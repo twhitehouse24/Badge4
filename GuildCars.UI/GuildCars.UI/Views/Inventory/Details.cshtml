@@ -1,0 +1,66 @@
+﻿@model GuildCars.Models.Queries.ListItem
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <h2>Vehicle Details</h2>
+
+    <div style="border-style:solid;border-color:#287Ec7">
+    <table border="0" style="width: 90%">
+        <tr>
+            <td style="padding:  10px 10px 5px 10px; width: 15%">
+                <center>
+                    <b>
+                        @Model.Year @Model.Make @Model.Model
+                        <br />
+                        <img src="@Url.Content(Model.Photo_Path)" width="75" height="50" />
+                    </b>
+                </center>
+            </td>
+            <td style="padding:  10px 10px 5px 10px; width: 75%">
+                <table border="0">
+                    <tr>
+                        <td style="padding:  10px 10px 10px 10px; width: 15%"><b>Body Style:</b> @Model.BodyStyle</td>
+                        <td style="padding:  10px 10px 10px 10px; width: 35%"><b>Interior Color:</b> @Model.IntColor</td>
+                        <td style="padding:  10px 10px 10px 10px; width: 50%; text-align: right">
+                            <b>Sale Price:</b>@Model.SalePrice.ToString("C")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:  10px 10px 10px 10px"><b>Trans:</b> @Model.Transmission</td>
+                        <td style="padding:  10px 10px 10px 10px"><b>Mileage:</b> @Model.Mileage</td>
+                        <td style="padding:  10px 10px 10px 10px; text-align: right"><b>Msrp: </b> @Model.Msrp.ToString("C")</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:  10px 10px 10px 10px"><b>Color:</b> @Model.ExtColor</td>
+                        <td colspan="2" style="padding:  10px 10px 10px 10px"><b>VIN:</b> @Model.Vin</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:  10px 10px 10px 10px; width: 20%"><b>Description:</b></td>
+                        <td colspan="2" style="padding:  10px 10px 10px 10px; width: 50%">@Model.Description</td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="padding: 10px 5px 10px 15px; width:70%; text-align:right">
+                @if (Model.Sold == true)
+                {
+                    <label>Unavailable-Sold</label>
+                }
+                else
+                {
+                    <input type="button" title="Contact Us" value="Contact Us" onclick="location.href='@Url.Action("Contact","Home", new { vin = Model.Vin})'" />
+                }
+
+            </td>
+        </tr>
+
+    </table>
+    </div>
+
+</div>

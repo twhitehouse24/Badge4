@@ -1,0 +1,48 @@
+﻿@model GuildCars.UI.Models.ModelsViewModel
+
+@{
+    ViewBag.Title = "Models";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Models</h2>
+
+@using (Html.BeginForm("ManageModels", "Admin", FormMethod.Post, new { @class = "form-inline form" }))
+{
+    <p>@ViewBag.ErrorMessage</p>
+    <div class="row" style="border:solid 1px black; width:775px">
+        <div class="form-group" style="padding:10px 0px 10px 0px">
+            <label for="new-model" style="padding:0px 0px 0px 10px;">New Model:</label>
+            <input type="text" id="NewModel" name="NewModel" style=" width:250px;" />
+        </div>
+        <div class="form-group">
+            <label style="padding: 0px 10px 0px 20px">Make</label>
+            @Html.DropDownListFor(m => m.MakeName, Model.Makes, new { style = "width: 250px; height:30px;" })
+            @Html.ValidationMessageFor(m => m.MakeName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <button class="button1" style="padding: 0px 20px 0px 20px">Save</button>
+        </div>
+    </div>
+}
+<div class="row">
+    <div class="col-md-6">
+        <table id="modelTable" class="table table-striped">
+            <tr>
+                <th width="20%">Make</th>
+                <th width="40%">Model</th>
+                <th width="40%">Date Added</th>
+                <th width="40%">User</th>
+            </tr>
+            @foreach (var item in Model.Models)
+            {
+                <tr>
+                    <td>@item.MakeName</td>
+                    <td>@item.ModelName</td>
+                    <td>@item.DateAdded</td>
+                    <td>@item.UpdatedBy</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,30 @@
+﻿@model GuildCars.Models.Tables.DeleteVehicleForm
+@{
+    ViewBag.Title = "DeleteVehicle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DeleteVehicle</h2>
+
+
+<h3>Are you sure you want to delete this vehicle?</h3>
+<div>
+    <hr />
+
+
+    @using (Html.BeginForm("DeleteVehicle", "Admin", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <label for="ID">Vehicle:</label>
+        @Html.TextBoxFor(m => m.ID, new { @readonly = "readonly" })
+    </div>
+        <div class="form-group" style="padding: 20px 0px 0px 50px;">
+            <input type="submit" value="Delete" class="btn btn-default" style="background-color:lightgray; color: black; width: 100px; height:35px; border: 1px solid black" />
+        </div>
+        <div class="form-group" style="padding: 20px 0px 0px 50px;">
+            <input type="button" title="Back to List" value="Back to List" style="background-color:lightgray; color: black; width: 100px; height:35px; border: 1px solid black" onclick="location.href = '@Url.Action("Vehicles","Admin")'" />
+        </div>
+    }
+</div>

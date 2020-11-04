@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Inventory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Inventory Report</h2>
+
+<div class="container">
+    <h4>New Vehicles</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Count</th>
+                <th>Stock Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var n in Model.NewList)
+            {
+                <tr>
+                    <td>@n.CarYr</td>
+                    <td>@n.Make</td>
+                    <td>@n.Model</td>
+                    <td>@n.Count</td>
+                    <td>@n.MSRP.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <h4>Used Vehicles</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Count</th>
+                <th>Stock Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var u in Model.UsedList)
+            {
+                <tr>
+                    <td>@u.CarYr</td>
+                    <td>@u.Make</td>
+                    <td>@u.Model</td>
+                    <td>@u.Count</td>
+                    <td>@u.MSRP.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

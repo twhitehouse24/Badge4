@@ -1,0 +1,156 @@
+﻿@model GuildCars.UI.Models.StateViewModel
+@{
+    ViewBag.Title = "Purchase";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>Purchase Vehicle</h2>
+
+<div style="border-style:solid;border-color:#287Ec7">
+    <table border="0" style="width: 90%">
+        <tr>
+            <td style="padding:  10px 10px 5px 10px; width: 20%">
+                <center>
+                    <b>
+                        @Model.Listitem.Year @Model.Listitem.Make @Model.Listitem.Model
+                        <br />
+                        <img src="@Url.Content(Model.Listitem.Photo_Path)" width="125" height="75" />
+                    </b>
+                </center>
+            </td>
+            <td style="padding:  10px 10px 5px 10px; width: 75%">
+                <table border="0">
+                    <tr>
+                        <td style="padding:  10px 10px 10px 10px; width: 15%"><b>Body Style:</b> @Model.Listitem.BodyStyle</td>
+                        <td style="padding:  10px 10px 10px 10px; width: 35%"><b>Interior Color:</b> @Model.Listitem.IntColor</td>
+                        <td style="padding:  10px 10px 10px 10px; width: 50%; text-align: right">
+                            <b>Sale Price:</b>@Model.Listitem.SalePrice.ToString("C")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:  10px 10px 10px 10px"><b>Trans:</b> @Model.Listitem.Transmission</td>
+                        <td style="padding:  10px 10px 10px 10px"><b>Mileage:</b> @Model.Listitem.Mileage</td>
+                        <td style="padding:  10px 10px 10px 10px; text-align: right"><b>Msrp: </b> @Model.Listitem.Msrp.ToString("C")</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:  10px 10px 10px 10px"><b>Color:</b> @Model.Listitem.ExtColor</td>
+                        <td colspan="2" style="padding:  10px 10px 10px 10px"><b>VIN:</b> @Model.Listitem.Vin</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:  10px 10px 10px 10px; width: 20%"><b>Description:</b></td>
+                        <td colspan="2" style="padding:  10px 10px 10px 10px; width: 50%">@Model.Listitem.Description</td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+<h2>Sales Information</h2>
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@using (Html.BeginForm("Purchase", "Sales", FormMethod.Post))
+{
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="purchaseName">Name</label>
+                @*<input type="text" class="form-control" id="CustName" name="CustName">*@
+                @Html.TextBoxFor(Model => Model.purchaseVehicleViewModel.CustName, new { id = "CustName", @Name = "CustName", @class = "form-control" })
+                @Html.ValidationMessage("CustName", "", new { @class = "text-danger" })
+
+                @Html.Hidden("CarId", Model.Listitem.CarId, new { id = "CarId", name = "CarId" })
+            </div>
+            <div class="form-group">
+                <label for="pMail">Email</label>
+                @*<input type="email" class="form-control" id="CustEmail" name="CustEmail">*@
+                @Html.TextBoxFor(Model => Model.purchaseVehicleViewModel.CustEmail, new { id = "CustEmail", @Name = "CustEmail", @class = "form-control" })
+                @Html.ValidationMessage("CustEmail", "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label>Street 1</label>
+                @*<input type="text" class="form-control" id="CustStreet1" name="CustStreet1">*@
+                @Html.TextBoxFor(Model => Model.purchaseVehicleViewModel.CustStreet1, new { id = "CustStreet1", @Name = "CustStreet1", @class = "form-control" })
+                @Html.ValidationMessage("CustStreet1", "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label>City</label>
+                @*<input type="text" class="form-control" id="CustCity" name="CustCity">*@
+                @Html.TextBoxFor(Model => Model.purchaseVehicleViewModel.CustCity, new { id = "CustCity", @Name = "CustCity", @class = "form-control" })
+                @Html.ValidationMessage("CustCity", "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label>Zip Code</label>
+                @*<input type="text" class="form-control" id="CustZip" name="CustZip">*@
+                @Html.TextBoxFor(Model => Model.purchaseVehicleViewModel.CustZip, new { id = "CustZip", @Name = "CustZip", @class = "form-control" })
+                @Html.ValidationMessage("CustZip", "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="pPhone">Phone</label>
+                @*<input type="text" class="form-control" id="CustPhone" name="CustPhone">*@
+                @Html.TextBoxFor(Model => Model.purchaseVehicleViewModel.CustPhone, new { id = "CustPhone", @Name = "CustPhone", @class = "form-control" })
+                @Html.ValidationMessage("CustPhone", "", new { @class = "text-danger" })
+            </div>
+            <br /><br /><br /><br />
+            <div class="form-group">
+                <label>Street 2</label>
+                @*<input type="text" class="form-control" id="CustStreet2" name="CustStreet2">*@
+                @Html.TextBoxFor(Model => Model.purchaseVehicleViewModel.CustStreet2, new { id = "CustStreet2", @Name = "CustStreet2", @class = "form-control" })
+                
+
+                @Html.HiddenFor(Model => Model.Listitem.SalePrice, new { @Name = "FirstSalePrice" })
+                @Html.HiddenFor(Model => Model.Listitem.Msrp, new { @Name = "MsrpPrice" })
+                              </div>
+            <div class="form-group" style="width:125px">
+                <label>State</label>
+                @Html.DropDownListFor(m => m.State_Abbrev, Model.StateList, new { id = "State_Abbrev", @Name = "State_Abbrev", @class = "form-control" })
+                @Html.ValidationMessage("State_Abbrev", "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <hr />
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Purchase Price</label>
+                @*<input type="text" class="form-control" id="SalePrice" name="SalePrice">*@
+                @Html.TextBoxFor(Model => Model.purchaseVehicleViewModel.SalePrice, new { id = "SalePrice", @Name = "SalePrice", @class = "form-control" })
+                @Html.ValidationMessage("SalePrice", "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="form-group">
+                <button type="Submit" class="btn btn-default" style="width:25%">Save</button>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group" style="width:175px">
+                <label>Purchase Type</label>
+                <select class="form-control" id="PurchaseType" name="Purchasetype">
+                    <option value="Bank Finance">Bank Finance</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Dealer">Dealer Finance</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/bundles/jqueryval"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
+
+

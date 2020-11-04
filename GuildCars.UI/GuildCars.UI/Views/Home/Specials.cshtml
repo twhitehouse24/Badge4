@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Specials";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+    <h2>Specials</h2>
+
+    @foreach (var s in Model)
+    {
+
+        <table border="1" style="width:100%" class="table table-striped">
+            <tbody>
+                <tr>
+                    <td style="width:100px">
+                        <img src="@s.ImageFileName" />
+                    </td>
+                    <td style="width:1500px">
+                        <table border="0" style="width:100%">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <h3>@s.Title.ToUpper()</h3>
+                                        <p>@s.Description</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    }
+
+</div>

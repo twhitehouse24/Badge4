@@ -1,0 +1,24 @@
+ [RegularExpression("[A-HJ-NPR-Z0-9]{13}[0-9]{4}", ErrorMessage = "Invalid Vehicle Identification Number Format.")]
+    public string VIN { get; set; }
+
+
+
+
+
+VIN usually consist of 17 characters.
+
+The very first letter or number of the VIN tells you in what region of the world your vehicle was made.
+
+The second letter or number, in combination with the first letter or number in the VIN, tells you in what country the car or truck was made.
+
+The third number or letter is used by the vehicle manfacturer to identify what kind of vehicle it is.
+
+The 4th 5th 6th 7th 8th characters, you can find out the vehicle model, engine type, body style.
+
+The 9th character is the VIN check digit where you can use math to figure out if it is a correct VIN.
+
+The 10th letter or number of the VIN tells you the model year of the vehicle.
+
+The 11th 12th 13th 14th 15th 16th characters is where the auto manufacturers enter unique information about the particular vehicle the VIN belongs to.
+
+https://stackoverflow.com/questions/20233167/vin-number-validation-using-asp-net-mvc/36436130
